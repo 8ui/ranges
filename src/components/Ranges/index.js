@@ -77,19 +77,24 @@ class Ranges extends React.Component {
 
   renderTabs = () => {
     const { selected } = this.state;
-    console.warn('Tabs');
     return (
-      <div className="tabs">
-        {Tabs.map((n,i) => (
-          <button
-            key={`tab-${i}`}
-            color={Colors[i]}
-            active={selected === i}
-            onClick={() => this.onTab(i)}
-          >
-            {n}
-          </button>
-        ))}
+      <div className="header">
+        {Tabs.map((n,i) => {
+          const cl = classNames(
+            'button',
+            `button--${Colors[i]}`,
+            { 'button--active': selected === i },
+          )
+          return (
+            <button
+              key={`tab-${i}`}
+              className={cl}
+              onClick={() => this.onTab(i)}
+            >
+              {n}
+            </button>
+          )
+        })}
       </div>
     )
   }

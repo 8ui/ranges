@@ -3,5 +3,5 @@ export const Tabs = [
 ];
 
 export const Colors = [
-  'red', 'orange', 'yellow', 'olive', 'green'
+  'red', 'orange', 'yellow', 'purple', 'green'
 ];
