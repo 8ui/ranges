@@ -1,62 +1,3 @@
-$track-color: #424242;
-$thumb-color: #00CC53;
-
-$thumb-height: 30px;
-$thumb-width: 30px;
-$thumb-radius: $thumb-width / 2;
-$thumb-shadow-size: 1px;
-$thumb-shadow-blur: 1px;
-$thumb-shadow-color: #111;
-$thumb-border-width: 1px;
-$thumb-border-color: transparent;
-
-$track-width: 100%;
-$track-height: 10px;
-$track-shadow-size: 2px;
-$track-shadow-blur: 2px;
-$track-shadow-color: #222;
-$track-border-width: 1px;
-$track-border-color: black;
-
-$track-radius: 0px;
-$contrast: 15%;
-
-$color-red: #ff5144;
-$color-orange: #ff7701;
-$color-yellow: #ffdf05;
-$color-olive: #daed59;
-$color-green: #1fc231;
-
-$colors:  (
-  red $color-red,
-  orange $color-orange,
-  yellow $color-yellow,
-  olive $color-olive,
-  green $color-green
-);
-
-@mixin shadow($shadow-size,$shadow-blur,$shadow-color){
-  box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color, 0px 0px $shadow-size lighten($shadow-color,5%);
-}
-
-@mixin track(){
-  width: $track-width;
-  height: $track-height;
-  cursor: pointer;
-  animate: 0.2s;
-}
-
-@mixin thumb(){
-  @include shadow($thumb-shadow-size,$thumb-shadow-blur,$thumb-shadow-color);
-  border: $thumb-border-width solid $thumb-border-color;
-  height: $thumb-height;
-  width: $thumb-width;
-  border-radius: $thumb-radius;
-  background: $thumb-color;
-  cursor: pointer;
-  transition: background 1s ease;
-}
-
 input[type=range] {
   -webkit-appearance: none;
   margin: $thumb-height/2 0;
@@ -128,16 +69,16 @@ input[type=range] {
 
 .items {
   @each $color in $colors {
-    .item.#{nth($color, 1)} {
+    .item--#{nth($color, 1)} {
       input[type="range"] {
         &::-webkit-slider-thumb {
-          background: #{nth($color, 2)};
+          background-color: #{nth($color, 2)};
         }
         &::-moz-range-thumb {
-          background: #{nth($color, 2)};
+          background-color: #{nth($color, 2)};
         }
         &::-ms-thumb {
-          background: #{nth($color, 2)};
+          background-color: #{nth($color, 2)};
         }
       }
     }
