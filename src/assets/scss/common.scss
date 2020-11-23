@@ -1,0 +1,62 @@
+body {
+  background: #1B1C1D;
+  padding: 20px;
+  margin: 0;
+  color: #fff;
+
+  .container {
+    .tabs {
+      padding-bottom: 30px;
+      .tab {
+        margin-right: 10px;
+        font-size: 20px;
+
+        &.selected {
+          font-weight: 600;
+        }
+      }
+    }
+    .item {
+      display: flex;
+      padding: 10px 0;
+      & > div:nth-child(1) {
+        display: flex;
+        align-items: flex-end;
+        padding: 0 0 12px 0;
+        text-transform: uppercase;
+      }
+      & > div:nth-child(2) {
+        flex: 1;
+        padding: 0 30px;
+        .label {
+          text-align: center;
+          padding-bottom: 5px;
+        }
+        input {
+          width: 100%;
+        }
+      }
+      & > .input {
+        width: 120px;
+        padding-top: 10px;
+
+        input {
+          text-align: right;
+          font-size: 120%;
+          background: transparent;
+          color: #fff;
+          border-color: rgba(#000, 0.5);
+          &:focus {
+            background: rgba(#fff, 0.05);
+          }
+        }
+      }
+    }
+  }
+  .results {
+    padding-top: 40px;
+    & > div {
+      padding-bottom: 5px;
+    }
+  }
+}
