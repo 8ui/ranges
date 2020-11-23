@@ -40,6 +40,13 @@ module.exports = {
     "max-len": ["warn"],
     "react/display-name": 0,
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./config/webpack.config.js"
+      }
+    }
+  },
   "globals": {
     "navigator": true,
     "window": true,

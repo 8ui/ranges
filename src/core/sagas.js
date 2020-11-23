@@ -15,8 +15,8 @@ function * init() {
 
 // После изменения значения ползунка
 // пересчитываем данные
-function * changeValue({ payload }) {
-  let value = Number(payload);
+function * changeValue({ payload: { index, value } }) {
+  value = Number(value);
 
   if (value > 100) {
     value = 100;
@@ -25,7 +25,7 @@ function * changeValue({ payload }) {
   }
 
   let data = yield select(getValue);
-  data = calculate(data, value);
+  data = calculate(data, { index, value });
   yield put(actions.updateData(data))
 }
 
@@ -50,7 +50,7 @@ function * changeTab({ payload }) {
 // Логирование
 function * logger(action) {
   const store = yield select();
-  console.log(action.type, { store });
+  console.log(action, store);
 }
 
 const sagas = [

@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
 
-@import './variables';
-@import './mixins';
-@import './common';
-@import './input-range';
+body {
+  background: map-get($colors, 'dark');
+  padding: 20px;
+  margin: 0;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .results {
+    padding-top: 40px;
+    & > div {
+      padding-bottom: 10px;
+    }
+  }
+}

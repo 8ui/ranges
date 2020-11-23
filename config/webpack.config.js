@@ -60,6 +60,10 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
+const sassResources = [
+  path.resolve('./src/assets/scss/variables.scss'),
+  path.resolve('./src/assets/scss/mixins.scss'),
+]
 
 const hasJsxRuntime = (() => {
   if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
@@ -331,6 +335,11 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        app: path.resolve('./src'),
+        atoms: path.resolve('./src/components/atoms'),
+        molecules: path.resolve('./src/components/molecules'),
+        organisms: path.resolve('./src/components/organisms'),
+        core: path.resolve('./src/core'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -404,7 +413,7 @@ module.exports = function (webpackEnv) {
                     },
                   ],
                 ],
-                
+
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -449,7 +458,7 @@ module.exports = function (webpackEnv) {
                 cacheDirectory: true,
                 // See #6846 for context on why cacheCompression is disabled
                 cacheCompression: false,
-                
+
                 // Babel sourcemaps are needed for debugging into node_modules
                 // code.  Without the options below, debuggers like VSCode
                 // show incorrect code and set breakpoints on the wrong lines.
@@ -499,7 +508,7 @@ module.exports = function (webpackEnv) {
             {
               test: sassRegex,
               exclude: sassModuleRegex,
-              use: getStyleLoaders(
+              use: [...getStyleLoaders(
                 {
                   importLoaders: 3,
                   sourceMap: isEnvProduction
@@ -508,6 +517,13 @@ module.exports = function (webpackEnv) {
                 },
                 'sass-loader'
               ),
+              {
+                loader: 'sass-resources-loader',
+                options: {
+                  sourceMap: true,
+                  resources: sassResources
+                }
+              }],
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.

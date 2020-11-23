@@ -13,7 +13,7 @@ const getValue = ({ index, value }, diff, needChange) => {
 }
 
 export const calculate = (data, { index, value } = {}) => {
-  const result = data;
+  const result = [...data];
 
   // Необходима для массивов с одним элементом
   if (result.length < 2) {

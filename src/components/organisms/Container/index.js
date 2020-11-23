@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import sumBy from 'lodash/sumBy';
-import { actions, getValue, getActiveTab } from '../../../core'
+import { actions, getValue, getTotal } from 'core'
 
-import { Item, Header } from '../../molecules';
-import { calculate } from './methods';
+import { Item, Header } from 'molecules';
 
 
 class Ranges extends React.Component {
@@ -28,8 +26,7 @@ class Ranges extends React.Component {
   }
 
   renderResult = () => {
-    const { data } = this.props;
-    const total = sumBy(data, 'value').toFixed(2);
+    const { data, total } = this.props;
     return (
       <div className="results">
         <h3>Результат</h3>
@@ -44,7 +41,7 @@ class Ranges extends React.Component {
         <strong>
           Итог
           {' '}
-          {total}
+          {total.toFixed(2)}
           %
         </strong>
       </div>
@@ -70,13 +67,13 @@ Ranges.propTypes = {
       value: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  tab: PropTypes.number.isRequired,
   changeValue: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   data: getValue(state),
-  tab: getActiveTab(state),
+  total: getTotal(state),
 })
 
 const mapDispatchToProps = {

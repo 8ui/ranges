@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import classNames from 'classnames';
-import { actions, getActiveColor } from '../../../core'
+import { actions, getActiveColor } from 'core'
 
 import './style.scss'
 
@@ -23,7 +23,7 @@ class Item extends React.Component {
 
   render() {
     const { label, value, color } = this.props;
-    console.warn('color', color);
+
     return (
       <div className={classNames('item', `item--${color}`)}>
         <div>

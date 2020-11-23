@@ -1,0 +1,130 @@
+.item {
+  display: flex;
+  padding: 10px 0;
+  margin-top: 30px;
+  & > div:nth-child(1) {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 12px 0;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+  & > div:nth-child(2) {
+    flex: 1;
+    padding: 0 30px;
+    position: relative;
+    input {
+      width: 100%;
+    }
+  }
+  & > input {
+    width: 120px;
+    text-align: right;
+    font-size: 120%;
+    background: transparent;
+    color: #fff;
+    border-color: rgba(#000, 0.5);
+    border-radius: 5px;
+    outline: none;
+    padding-right: 10px;
+    &:focus {
+      background: rgba(#fff, 0.05);
+    }
+  }
+  &-label {
+    text-align: center;
+    padding-bottom: 5px;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+  }
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: $thumb-height/2 0;
+  width: $track-width;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track();
+    @include shadow($track-shadow-size,$track-shadow-blur,$track-shadow-color);
+    background: $track-color;
+    border-radius: $track-radius;
+    border: $track-border-width solid $track-border-color;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb();
+    -webkit-appearance: none;
+    margin-top: ((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2);
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    background: lighten($track-color, $contrast);
+  }
+
+  &::-moz-range-track {
+    @include track();
+    @include shadow($track-shadow-size,$track-shadow-blur,$track-shadow-color);
+    background: $track-color;
+    border-radius: $track-radius;
+     border: $track-border-width solid $track-border-color;
+  }
+  &::-moz-range-thumb {
+     @include thumb();
+  }
+
+  &::-ms-track {
+    @include track();
+    background: transparent;
+    border-color: transparent;
+    border-width: $thumb-width 0;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: darken($track-color, $contrast);
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius*2;
+    @include shadow($track-shadow-size,$track-shadow-blur,$track-shadow-color);
+  }
+  &::-ms-fill-upper {
+    background: $track-color;
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius*2;
+    @include shadow($track-shadow-size,$track-shadow-blur,$track-shadow-color);
+  }
+  &::-ms-thumb {
+    @include thumb();
+  }
+  &:focus::-ms-fill-lower {
+    background: $track-color;
+  }
+  &:focus::-ms-fill-upper {
+    background: lighten($track-color, $contrast);
+  }
+}
+
+.items {
+  @each $color in $colors {
+    .item--#{nth($color, 1)} {
+      input[type="range"] {
+        &::-webkit-slider-thumb {
+          background-color: #{nth($color, 2)};
+        }
+        &::-moz-range-thumb {
+          background-color: #{nth($color, 2)};
+        }
+        &::-ms-thumb {
+          background-color: #{nth($color, 2)};
+        }
+      }
+    }
+  }
+}

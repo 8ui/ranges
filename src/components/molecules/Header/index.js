@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import classNames from 'classnames'
-import { actions, getTabs } from '../../../core'
+import { actions, getTabs } from 'core'
+
+import { Button } from 'atoms'
+import './style.scss'
 
 
 const Header = (props) => {
@@ -12,23 +14,16 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      {tabs.map((tab, i) => {
-        const cl = classNames(
-          'button',
-          `button--${tab.color}`,
-          { 'button--active': tab.active },
-        )
-        return (
-          <button
-            type="button"
-            key={`tab-${i}`}
-            className={cl}
-            onClick={() => changeTab(i)}
-          >
-            {tab.text}
-          </button>
-        )
-      })}
+      {tabs.map((tab, i) => (
+        <Button
+          key={`tab-${i}`}
+          color={tab.color}
+          active={tab.active}
+          onClick={() => changeTab(i)}
+        >
+          {tab.text}
+        </Button>
+      ))}
     </div>
   )
 }

@@ -1,3 +1,5 @@
+import sumBy from 'lodash/sumBy';
+
 
 export const getReducer = (state) => state.reducer;
 
@@ -25,4 +27,11 @@ export const getTabs = (state) => {
     result[key].color = colors[key];
   })
   return result;
+}
+
+// Сумма всех значений
+export const getTotal = (state) => {
+  const value = getValue(state);
+  const total = sumBy(value, 'value');
+  return total;
 }
